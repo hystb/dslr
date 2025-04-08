@@ -1,5 +1,7 @@
 
-from src.preprocessing.file.csvmanager import CSVManager
+from src.preprocessing.file.loader import Loader
 
-dataset = CSVManager().load("datasets/dataset_train.csv")
+dataset = Loader().load("datasets/dataset_train.csv")
+
+
 

@@ -1,5 +1,5 @@
 
-from src.preprocessing.file.csvmanager import CSVManager, DataSet
+from src.preprocessing.file.loader import CSVManager, DataSet
 from src.preprocessing.maths import std
 from matplotlib import pyplot as pp
 import seaborn as sb
