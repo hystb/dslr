@@ -1,10 +1,17 @@
-from src.preprocessing.maths import *
+import src.maths as mts
+import numpy as np
 
 class Z_score():
-    def normalize_list(self, data):
-        mean = sum(data) / len(data)
-        standard_deviation = math.sqrt(sum((data - mean)**2) / len(data))
-        return [self.__normalize(x, mean, standard_deviation).item() for x in data]
-    
-    def __normalize(self, x, mean, standard_deviation):
-        return (x - mean) / standard_deviation
+    def normalize_matrix(self, data: np.ndarray):
+        normalized_data = data.copy()
+
+        for i in range(data.shape[1]):
+            col = data[:, i]
+            mean = mts.mean(col)
+            std = mts.std(col)
+
+            normalized_data[:, i] = [self.normalize_column(x, mean, std) for x in col]
+        return normalized_data
+
+    def normalize_column(self, x, mean, std):
+        return (x.astype(float) - mean) / std

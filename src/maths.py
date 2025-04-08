@@ -1,16 +1,16 @@
 import math
 
-def sum(column: list):
+def sum(column):
     result = 0
 
     for v in column:
         result += v
     return result
 
-def mean(column: list):
+def mean(column):
     return sum(column) / len(column)
 
-def std(column: list):
+def std(column):
     c_mean = mean(column)
     l_mean = len(column)
 
@@ -19,21 +19,21 @@ def std(column: list):
         c_sum = c_sum + (v - c_mean) ** 2
     return math.sqrt(c_sum / l_mean)
 
-def max(column: list):
+def max(column):
     r_max = -math.inf
 
     for v in column:
         r_max = v if r_max < v else r_max
     return r_max
 
-def min(column: list):
+def min(column):
     r_min = +math.inf
 
     for v in column:
         r_min = v if r_min > v else r_min
     return r_min
 
-def percentile(column: list, percentage):
+def percentile(column, percentage):
     percentage /= 100
 
     column.sort()
