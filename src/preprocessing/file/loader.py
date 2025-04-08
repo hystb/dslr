@@ -30,11 +30,9 @@ class Loader:
             return DataSet(data, headers)
         
     def data_treatment(self, data: np.ndarray) -> np.ndarray:
-        # replace age and hands
         data[:, self.birtday_c_index] = self.__convert_birthday(data[:, self.birtday_c_index])
         data[:, self.besthand_c_index] = self.__convert_besthand(data[:, self.besthand_c_index])
 
-        # numbers and empty values
         data = self.__convert_to_numbers(data)
         empty_dict = self.__extract_empty_values(data)
 
