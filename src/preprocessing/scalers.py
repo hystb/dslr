@@ -14,4 +14,4 @@ class Z_score():
         return normalized_data
 
     def normalize_column(self, x, mean, std):
-        return (x.astype(float) - mean) / std
+        return (x - mean) / std

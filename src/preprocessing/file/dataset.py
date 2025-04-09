@@ -14,7 +14,7 @@ class DataSet:
         return self._data[:, self.numeric_data_index:]
 
     def get_column(self, name: str) -> np.ndarray:
-        return self._data[:, self.headers.get(name)]
+        return self._data[:, self._headers.get(name)]
 
     def get_all(self) -> np.ndarray:
         return self._data
@@ -32,4 +32,4 @@ class DataSet:
         z_data = self._data.copy()
         z_data[:, self.numeric_data_index:] = score.normalize_matrix(self.get_numerics())
 
-        return DataSet(z_data, self.headers)
+        return DataSet(z_data, self._headers)
