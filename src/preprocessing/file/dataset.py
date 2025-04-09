@@ -3,7 +3,7 @@ import numpy as np
 from src.preprocessing.scalers import Z_score
 
 class DataSet:
-    numeric_data_index = 5
+    numeric_data_index = 4 # with birthday and besthand !
 
     def __init__(self, data: np.ndarray, headers: dict):
         self._data = data
