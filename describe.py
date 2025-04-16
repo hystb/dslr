@@ -56,7 +56,7 @@ def do_describe(dataset: DataSet):
     for stat, vals in values.items():
         print(f"{stat:<10}", end="")
         for v in vals:
-            print(f"{v:<12.3g}", end="")
+            print(f"{v:<12.4g}", end="")
         print()
 
 def main():
