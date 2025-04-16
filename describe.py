@@ -5,7 +5,7 @@ import src.maths as mts
 import sys
 
 def truncate_string(s):
-    max_lenght = 13
+    max_lenght = 10
 
     if len(s) > max_lenght:
         return s[:max_lenght - 2] + ".."
@@ -50,13 +50,13 @@ def do_describe(dataset: DataSet):
 
     print(f"{'':<10}", end="")
     for h in numerics_headers:
-        print(f"{truncate_string(h):<15}", end="")
+        print(f"{truncate_string(h):<12}", end="")
     print()
 
     for stat, vals in values.items():
         print(f"{stat:<10}", end="")
         for v in vals:
-            print(f"{v:<15.4f}", end="")
+            print(f"{v:<12.3g}", end="")
         print()
 
 def main():
