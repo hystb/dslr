@@ -3,7 +3,7 @@ import numpy as np
 class LogisticRegressionModel:
     """LogisticRegression using BinaryCrossEntropy (loss) and batch descent gradient (optimizer)"""
 
-    def __init__(self, learning_rate = 0.001, n_iter = 10000):
+    def __init__(self, learning_rate = 0.01, n_iter = 1000):
         self.learning_rate = learning_rate
         self.n_iter = n_iter
 
