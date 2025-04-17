@@ -47,8 +47,8 @@ class LogisticRegressionModel:
             # gradient descent
             self.weights -= self.learning_rate * dw
             self.bias -= self.learning_rate * db
-
-        print(f"Loss {self.loss(self.y_prediction(X, self.weights, self.bias), y)}")
+        
+        return self.loss(self.y_prediction(X, self.weights, self.bias), y)
 
     def predict(self, X):
         return self.y_prediction(X, self.weights, self.bias)
@@ -72,22 +72,24 @@ class OneVsAllLogisticRegression():
         self.models = {}
 
     @classmethod
-    def __class_str_to_int(cls, y) -> np.ndarray:
+    def _class_str_to_int(cls, y) -> np.ndarray:
         for k, v in cls.class_indexes.items():
             y[y == k] = v
         return np.array(y, dtype=int)
 
     def fit(self, X, y, **kwargs):
         """Automaticly perform one-vs-all regression"""
-        y = self.__class_str_to_int(y)
+        y = self._class_str_to_int(y.copy())
 
         for k, v in self.class_indexes.items():
             binary_y = y.copy()
             binary_y = (binary_y == v).astype(int)
             model = LogisticRegressionModel(**kwargs)
 
-            model.fit(X, binary_y)
+            loss = model.fit(X, binary_y)
             self.models[k] = model
+
+            print(f"Loss for model of {k} house: {loss:.3f}")
 
     def predict(self, X) -> str:
         """Return the predicted class name"""

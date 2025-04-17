@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from src.preprocessing.file.dataset import DataSet
 from src.preprocessing.file.loader import Loader
@@ -15,6 +16,12 @@ def remove_none(column: np.ndarray):
     return column[column != None] 
 
 def do_describe(dataset: DataSet):
+    """
+    Bonus: 
+        - samp_var, variance (échantillon)
+        - iqr, écart interquartile
+        - skew, skewness (coefficient d'asymétrie)
+    """
     headers = list(dataset.get_headers().keys())
 
     numerics_headers = headers[dataset.numeric_data_index:]
@@ -60,9 +67,11 @@ def do_describe(dataset: DataSet):
         print()
 
 def main():
-    if (len(sys.argv) == 2):
+    if (len(sys.argv) == 2 and os.path.exists(sys.argv[1])):
         dataset = Loader().load(sys.argv[1])
         do_describe(dataset)
+    else:
+        print("usage: python describe.py [dataset]")
 
 if __name__ == "__main__":
     main()

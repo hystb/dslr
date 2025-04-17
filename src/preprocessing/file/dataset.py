@@ -9,10 +9,12 @@ class DataSet:
         self._data = data
         self._headers = headers
 
-    def get_numerics(self) -> np.ndarray:
+    def get_numerics(self, exclude: list[str] = []) -> np.ndarray:
         """Return only the columns that are numerical numbers"""
-        return self._data[:, self.numeric_data_index:]
-
+        array = self._data[:, self.numeric_data_index:]
+        idx_del = [self._headers.get(ex) - self.numeric_data_index for ex in exclude]
+        return np.delete(array, idx_del, axis=1)
+    
     def get_column(self, name: str) -> np.ndarray:
         return self._data[:, self._headers.get(name)]
 
