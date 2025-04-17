@@ -3,9 +3,8 @@ import numpy as np
 class LogisticRegressionModel:
     """LogisticRegression using BinaryCrossEntropy (loss) and batch descent gradient (optimizer)"""
 
-    def __init__(self, learning_rate = 0.01, n_iter = 1000):
+    def __init__(self, learning_rate = 0.01):
         self.learning_rate = learning_rate
-        self.n_iter = n_iter
 
     @staticmethod
     def loss(A, Y):
@@ -31,13 +30,26 @@ class LogisticRegressionModel:
     def y_prediction(cls, X, weights, bias) -> np.ndarray:
         return cls.activation(cls.linear(X, weights, bias))
 
+    @classmethod
+    def early_stop(cls, loss_history: list):
+        delta = 1e-4
+
+        if (len(loss_history) > 2):
+            if (loss_history[-2] - loss_history[-1] < delta):
+                return True
+            else:
+                return False
+        else:
+            return False
+
     def fit(self, X, y):
         X = np.array(X, dtype=float)
         n_samples, n_features = X.shape
+        loss_history = []
         self.weights = np.zeros(n_features)
         self.bias = 0
 
-        for _ in range(self.n_iter):
+        while not (self.early_stop(loss_history)):
             y_predicted = self.y_prediction(X, self.weights, self.bias)
 
             # as mentionned in subject
@@ -47,8 +59,9 @@ class LogisticRegressionModel:
             # gradient descent
             self.weights -= self.learning_rate * dw
             self.bias -= self.learning_rate * db
-        
-        return self.loss(self.y_prediction(X, self.weights, self.bias), y)
+            loss_history.append(self.loss(self.y_prediction(X, self.weights, self.bias), y))
+
+        return loss_history[-1] 
 
     def predict(self, X):
         return self.y_prediction(X, self.weights, self.bias)
