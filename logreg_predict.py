@@ -6,7 +6,7 @@ from src.processing.model_manager import ModelManager
 from src.preprocessing.file.replacer import MeanReplacer
 from src.preprocessing.file.loader import Loader
 
-to_exclude = ["Best Hand", "Arithmancy", "Potions", "Care of Magical Creatures"]
+to_exclude = ["Birthday", "Best Hand", "Arithmancy", "Potions", "Care of Magical Creatures"]
 
 def export_to_csv(file, data):
     with open(file, mode="w", newline="") as file:

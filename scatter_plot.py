@@ -1,3 +1,4 @@
+import os
 import sys
 sys.path.append('./src/preprocessing/file')
 
@@ -47,10 +48,11 @@ def do_scatter(dataset: DataSet):
 
 
 def main():
-    if (len(sys.argv) == 2):
+    if (len(sys.argv) == 2 and os.path.exists(sys.argv[1])):
         dataset = Loader().load(sys.argv[1])
         do_scatter(dataset)
-
+    else:
+        print("usage: python scatter_plot.py [dataset]")
 
 if __name__ == "__main__":
     main()

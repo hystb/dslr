@@ -7,7 +7,7 @@ from src.preprocessing.file.replacer import MeanReplacer
 from src.preprocessing.file.loader import Loader
 from src.processing.logistic_regression import OneVsAllLogisticRegression
 
-to_exclude = ["Best Hand", "Arithmancy", "Potions", "Care of Magical Creatures"]
+to_exclude = ["Birthday", "Best Hand", "Arithmancy", "Potions", "Care of Magical Creatures"]
 
 def do_train(dataset: DataSet):
     data = dataset.standardize()
@@ -23,7 +23,6 @@ def do_train(dataset: DataSet):
 
     ModelManager().export_to_file(core, "dslr.model")
     print("Model successfully exported!")
-
 
 def main():
     if (len(sys.argv) == 2 and os.path.exists(sys.argv[1])):
