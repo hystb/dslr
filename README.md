@@ -74,3 +74,16 @@ Each row contains a student's name, house, and course grades. Only numeric featu
 ## 🧠 Model
 
 The model uses a **One-vs-All logistic regression** approach, trained on standardized numeric features while excluding non-informative ones such as `"Birthday"`, `"Best Hand"`, etc.
+
+## 📸 Visualizations
+
+This project includes various visualizations generated from data analysis and model evaluation notebooks.
+  
+
+### PCA Visualization – Decision Boundary for Classes
+
+![Decision Boundary - PCA](images/PCA_gryffindor_model.png)
+![Decision Boundary - PCA](images/PCA_hufflepuff_model.png)
+![Decision Boundary - PCA](images/PCA_Ravenclaw_model.png)
+![Decision Boundary - PCA](images/PCA_slytherin_model.png)
+
