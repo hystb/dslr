@@ -74,7 +74,3 @@ Each row contains a student's name, house, and course grades. Only numeric featu
 ## 🧠 Model
 
 The model uses a **One-vs-All logistic regression** approach, trained on standardized numeric features while excluding non-informative ones such as `"Birthday"`, `"Best Hand"`, etc.
-
-## 📜 License
-
-This is a pedagogical project developed as part of a **Data Science / Machine Learning Engineering curriculum**. You are free to use, adapt, and extend it.
